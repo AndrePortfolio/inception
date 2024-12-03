@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   mariadb:
     build:
@@ -11,8 +9,8 @@ services:
       MYSQL_USER: wordpress_user
       MYSQL_PASSWORD: wordpress_password
     volumes:
-      - ./requirements/mariadb/conf:/etc/mysql/conf.d
-      - ./requirements/mariadb/tools:/docker-entrypoint-initdb.d
+      - mariadb_data:/var/lib/mysql
+      - ./requirements/mariadb/conf.d:/etc/mysql/conf.d
     ports:
       - "3306:3306"
     networks:
@@ -54,6 +52,7 @@ services:
 
 volumes:
   wordpress_data:
+  mariadb_data:
 
 networks:
   inception_network:

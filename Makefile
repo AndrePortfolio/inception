@@ -15,7 +15,7 @@ clean:
 	$(DOCKER_COMPOSE) down -v --rmi all
 	rm -rf /home/andre/data
 
-fclean:
+fclean: clean down
 	docker builder prune -f
 
 re: clean all
