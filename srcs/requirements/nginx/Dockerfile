@@ -16,6 +16,8 @@ RUN openssl req -x509 -newkey rsa:4096 -days 365 -nodes \
 # Copy custom NGINX configuration
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 
+COPY conf/mime.types /etc/nginx/nginx.conf
+
 # Expose port 443 for HTTPS
 EXPOSE 443
 

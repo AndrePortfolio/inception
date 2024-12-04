@@ -1,8 +1,6 @@
-# Variables
 SRC_DIR=srcs
 DOCKER_COMPOSE=docker compose -f $(SRC_DIR)/docker-compose.yml
 
-# Targets
 all: build
 
 build:
@@ -15,7 +13,12 @@ clean:
 	$(DOCKER_COMPOSE) down -v --rmi all
 	rm -rf /home/andre/data
 
-fclean: clean down
+fclean: clean
 	docker builder prune -f
+	docker container prune -f
+	docker network prune -f
+	docker volume prune -f
+	docker image prune -a -f
+	docker system prune -a --volumes -f
 
 re: clean all
