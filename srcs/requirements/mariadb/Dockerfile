@@ -1,10 +1,14 @@
-FROM mariadb:10.5
+FROM debian:buster
 
-ENV MYSQL_ROOT_PASSWORD=root_password
-ENV MYSQL_DATABASE=wordpress
+RUN apt-get update -y && \
+    apt-get install -y mariadb-server
 
-COPY conf /etc/mysql/conf.d
-COPY tools /docker-entrypoint-initdb.d
+COPY ./tools/script.sh /tmp/script.sh
 
-EXPOSE 3306
+RUN chmod +x /tmp/script.sh
 
+RUN sed -i "s/127.0.0.1/0.0.0.0/" /etc/mysql/mariadb.conf.d/50-server.cnf
+
+ENTRYPOINT ["bash", "/tmp/script.sh"]
+
+CMD ["mysqld_safe"]

@@ -1,25 +1,17 @@
-# Use a base image (Alpine recommended for small size)
-FROM alpine:3.17
+FROM debian:buster
 
-# Install necessary packages
-RUN apk update && apk add --no-cache nginx openssl
+RUN apt update; \
+    apt install -y nginx openssl
 
-# Create directory for SSL certificates and configuration
-RUN mkdir -p /etc/nginx/certs /etc/nginx/conf.d
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -keyout /etc/ssl/private/andre-da.key \
+    -out /etc/ssl/certs/andre-da.crt \
+    -subj="/C=PT/ST=lisbon/L=Beato/O=42 School/OU=andre-da/CN=andre-da.42.fr"
 
-# Generate self-signed SSL certificates
-RUN openssl req -x509 -newkey rsa:4096 -days 365 -nodes \
-    -keyout /etc/nginx/certs/nginx.key \
-    -out /etc/nginx/certs/nginx.crt \
-    -subj "/C=FR/ST=Paris/L=Paris/O=42 School/OU=IT Department/CN=andre.42.fr"
+COPY ./tools/certs.sh /tmp/certs.sh
 
-# Copy custom NGINX configuration
-COPY conf/nginx.conf /etc/nginx/nginx.conf
+RUN chmod +x /tmp/certs.sh
 
-COPY conf/mime.types /etc/nginx/nginx.conf
+COPY ./conf/default /etc/nginx/sites-available/default
 
-# Expose port 443 for HTTPS
-EXPOSE 443
-
-# Start NGINX in foreground
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["/tmp/certs.sh"]

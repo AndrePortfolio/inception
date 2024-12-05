@@ -1,5 +1,5 @@
 SRC_DIR=srcs
-DOCKER_COMPOSE=docker compose -f $(SRC_DIR)/docker-compose.yml
+DOCKER_COMPOSE=docker-compose -f $(SRC_DIR)/docker-compose.yml
 
 all: build
 
@@ -21,4 +21,4 @@ fclean: clean
 	docker image prune -a -f
 	docker system prune -a --volumes -f
 
-re: clean all
+re: fclean all

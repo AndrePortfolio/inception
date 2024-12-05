@@ -1,54 +1,50 @@
+version: "3.7"
 services:
   mariadb:
-    build:
-      context: ./requirements/mariadb
     container_name: mariadb
-    environment:
-      MYSQL_ROOT_PASSWORD: "coffe"
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: andre-da
-      MYSQL_PASSWORD: "coffe"
+    build: ./requirements/mariadb/.
+    image: mariadb
     volumes:
       - mariadb_data:/var/lib/mysql
-      - ./requirements/mariadb/conf.d:/etc/mysql/conf.d
-    ports:
-      - "3306:3306"
+    expose:
+      - "3306"
     networks:
       - inception_network
+    env_file:
+      - .env
+    restart: on-failure
 
   wordpress:
-    build:
-      context: ./requirements/wordpress
     container_name: wordpress
-    environment:
-      WORDPRESS_DB_HOST: mariadb
-      WORDPRESS_DB_USER: andre-da
-      WORDPRESS_DB_PASSWORD: "coffe"
-      WORDPRESS_DB_NAME: wordpress
-    volumes:
-      - wordpress_data:/var/www/html
-    ports:
-      - "9000:9000"
     depends_on:
       - mariadb
+    build: ./requirements/wordpress/.
+    image: wordpress
+    volumes:
+      - wordpress_data:/var/www/html
+    expose:
+      - "9000"
     networks:
       - inception_network
+    env_file:
+      - .env
+    restart: on-failure
 
   nginx:
-    build:
-      context: ./requirements/nginx
     container_name: nginx
-    ports:
-      - "443:443"
-      - "80:80"
-    volumes:
-      - ./requirements/nginx/conf:/etc/nginx
-      - ./requirements/nginx/certs:/etc/nginx/certs
-      - wordpress_data:/var/www/html
     depends_on:
       - wordpress
+    build: ./requirements/nginx/.
+    image: nginx
+    ports:
+      - "443:443"
+    volumes:
+      - wordpress_data:/var/www/html
     networks:
       - inception_network
+    env_file:
+      - .env
+    restart: on-failure
 
 volumes:
   wordpress_data:
@@ -56,4 +52,3 @@ volumes:
 
 networks:
   inception_network:
-
