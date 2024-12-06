@@ -1,19 +1,14 @@
-FROM debian:buster
+FROM debian:oldstable
 
 RUN apt-get update -y && \
-    apt-get install -y mariadb-server
-    
-RUN mkdir -p /var/run/mysqld
-RUN chown -R mysql:mysql /var/run/mysqld
+    apt-get install -y mariadb-server && \
+    apt-get clean
 
-WORKDIR /var/run/mysqld
-    
 COPY ./tools/script.sh /tmp/script.sh
-
 RUN chmod +x /tmp/script.sh
 
-EXPOSE 3306
+WORKDIR /var/lib/mysql
 
-USER mysql
+EXPOSE 3306
 
 ENTRYPOINT ["bash", "/tmp/script.sh"]
