@@ -16,4 +16,6 @@ RUN mkdir -p /run/php
 
 COPY tools/script.sh /etc/wordpress.sh
 
+EXPOSE 9000
+
 ENTRYPOINT [ "bash", "/etc/wordpress.sh" ]
