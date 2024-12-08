@@ -1,4 +1,4 @@
-FROM debian:oldstable-slim
+FROM debian:oldstable
 
 RUN apt-get update && apt-get install -y curl php-fpm php-mysql php-mbstring php-xml \
     php-gd php-curl php-zip php-xmlrpc php-soap php-intl php-cli php-ldap php-imap \
