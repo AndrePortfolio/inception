@@ -4,13 +4,19 @@ server {
 
     server_name DOMAIN_NAME www.DOMAIN_NAME;
 
-    # SSL certificates
     ssl_certificate my_cert;
     ssl_certificate_key my_key;
     ssl_protocols TLSv1.3;
 
     root /var/www/html;
     index index.php index.html;
+
+    # Allow CORS for specific resources
+    location ~* \.(js|css|woff2)$ {
+        add_header 'Access-Control-Allow-Origin' 'https://andre-da.42.fr';
+        add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS';
+        add_header 'Access-Control-Allow-Headers' 'Origin, X-Requested-With, Content-Type, Accept';
+    }
 
     # Main location block for handling WordPress
     location / {
@@ -20,7 +26,7 @@ server {
     # PHP processing
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass wordpress:9000;  # Connects to the WordPress container on port 9000
+        fastcgi_pass wordpress:9000;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         include fastcgi_params;
     }
@@ -30,3 +36,4 @@ server {
         deny all;
     }
 }
+
