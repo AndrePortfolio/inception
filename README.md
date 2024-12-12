@@ -1,5 +1,8 @@
 # Inception 🐳 
 
+![Description of the photo](https://github.com/AndrePortfolio/inception/blob/main/inception1.png)
+![Description of the photo](https://github.com/AndrePortfolio/inception/blob/main/inception2.png)
+
 ## Project Overview ⚙️
 
 This project is part of the 42 curriculum and aims to enhance system administration skills using Docker. The objective is to create and configure a small infrastructure with multiple services running in isolated Docker containers. The infrastructure will be deployed on a Virtual Machine.
