@@ -1,12 +1,12 @@
-# Inception
+# Inception 🐳 
 
-## Project Overview
+## Project Overview ⚙️
 
 This project is part of the 42 curriculum and aims to enhance system administration skills using Docker. The objective is to create and configure a small infrastructure with multiple services running in isolated Docker containers. The infrastructure will be deployed on a Virtual Machine.
 
 ---
 
-## Features
+## Features 🛠️
 
 - **NGINX**
   - Configured with TLSv1.2 or TLSv1.3 for secure connections.
@@ -30,7 +30,7 @@ This project is part of the 42 curriculum and aims to enhance system administrat
 
 ---
 
-## Directory Structure
+## Directory Structure 🌐
 
 ```plaintext
 .
@@ -47,7 +47,7 @@ This project is part of the 42 curriculum and aims to enhance system administrat
 
 ---
 
-## Requirements
+## Requirements 🖥️
 
 - A Virtual Machine.
 - Docker and Docker Compose.
@@ -84,7 +84,7 @@ This project is part of the 42 curriculum and aims to enhance system administrat
 
 ---
 
-## Security Best Practices
+## Security Best Practices 🗂️
 
 - Use a `.env` file for non-sensitive environment variables.
 - Store sensitive information (e.g., database credentials) in the `secrets/` folder.
