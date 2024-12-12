@@ -59,7 +59,7 @@ This project is part of the 42 curriculum and aims to enhance system administrat
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/<your-username>/inception.git
+   git clone git@github.com:AndrePortfolio/inception.git
    cd inception
    ```
 
