@@ -1,6 +1,5 @@
 # Inception 🐳 
 
-![Description of the photo](https://github.com/AndrePortfolio/inception/blob/main/inception1.png)
 ![Description of the photo](https://github.com/AndrePortfolio/inception/blob/main/inception2.png)
 
 ## Project Overview ⚙️
