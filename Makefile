@@ -11,7 +11,7 @@ down:
 
 clean:
 	$(DOCKER_COMPOSE) down -v --rmi all
-	rm -rf /home/andre/data
+	rm -rf /home/andre-da/data
 
 fclean: clean
 	docker builder prune -f
@@ -20,5 +20,12 @@ fclean: clean
 	docker volume prune -f
 	docker image prune -a -f
 	docker system prune -a --volumes -f
+
+eval:
+	docker stop $(docker ps -qa);
+	docker rm $(docker ps -qa);
+	docker rmi -f $(docker images -qa);
+	docker volume rm $(docker volume ls -q);
+	docker network rm $(docker network ls -q) 2>/dev/null;
 
 re: fclean all

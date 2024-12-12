@@ -18,7 +18,7 @@ sleep 5
 echo "Setting up the MariaDB root user and database..."
 mysql -u root <<EOF
 -- Create the root user password if it doesn't exist
-ALTER USER 'root'@'localhost' IDENTIFIED BY '${SQL_ROOT_PASS}';
+-- ALTER USER 'root'@'localhost' IDENTIFIED BY '${SQL_ROOT_PASS}';
 
 -- Create the application database
 CREATE DATABASE IF NOT EXISTS ${SQL_DB};
