@@ -4,6 +4,9 @@ DOCKER_COMPOSE=docker-compose -f $(SRC_DIR)/docker-compose.yml
 all: build
 
 build:
+	mkdir -p /home/andre-da/data/
+	mkdir -p /home/andre-da/data/mariadb_data
+	mkdir -p /home/andre-da/data/wordpress_data
 	$(DOCKER_COMPOSE) up --build -d
 
 down:

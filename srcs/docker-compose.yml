@@ -44,17 +44,15 @@ services:
 
 volumes:
   mariadb_data:
-    #driver: local
-    #driver_opts:
-    #  type: none
-    #  o: bind
-    #  device: /home/andre-da/data/mariadb_data
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/andre-da/data/mariadb_data/
   wordpress_data:
-    #driver: local
-    #driver_opts:
-    #  type: none
-    #  o: bind
-    #  device: /home/andre-da/data/wordpress_data
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/andre-da/data/wordpress_data/
 
 networks:
   inception_network:
