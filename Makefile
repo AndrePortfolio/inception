@@ -9,20 +9,20 @@ build:
 	mkdir -p /home/andre-da/data/wordpress_data
 	$(DOCKER_COMPOSE) up --build -d
 
-down:
-	$(DOCKER_COMPOSE) down
+# down:
+# 	$(DOCKER_COMPOSE) down
 
-clean:
-	$(DOCKER_COMPOSE) down -v --rmi all
-	rm -rf /home/andre-da/data
+# clean:
+# 	$(DOCKER_COMPOSE) down -v --rmi all
+# 	sudo rm -rf /home/andre-da/data
 
-fclean: clean
-	docker builder prune -f
-	docker container prune -f
-	docker network prune -f
-	docker volume prune -f
-	docker image prune -a -f
-	docker system prune -a --volumes -f
+# fclean: clean
+# 	docker builder prune -f
+# 	docker container prune -f
+# 	docker network prune -f
+# 	docker volume prune -f
+# 	docker image prune -a -f
+# 	docker system prune -a --volumes -f
 
 eval:
 	docker stop $(docker ps -qa);
